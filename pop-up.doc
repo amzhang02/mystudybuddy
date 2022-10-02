@@ -1,0 +1,16 @@
+Hi I just wanted to make a quick notes place
+specifically in here so we could all see it.
+
+Basically I realized I can't put comments in json files
+and it would be really useful to have some comments on it right now.
+
+We can totally delete this file later, no problem,
+I just wanted to put this idea in place before I forgot it:
+I think we can start the website blocking feature in the json file 
+through the content_scripts part, since it seems to be websites we 
+would have access to in the extension and what to do with them! I 
+think this could work, and I didn't want to forget it :P
+
+Within the "action" part in json, we can put 
+    "default_icon": { *put in png files!* },
+    once we have an icon design
