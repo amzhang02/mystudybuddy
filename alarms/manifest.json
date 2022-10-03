@@ -1,0 +1,10 @@
+{
+  "name": "My StudyBuddy",
+  "version": "1.0",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "alarms.js"
+  },
+  "permissions": ["notifications", "storage", "alarms"],
+  "action": {}
+}
