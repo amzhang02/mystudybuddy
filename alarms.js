@@ -17,3 +17,4 @@ else{
 }
 
 document.getElementById("new reminder").innerHTML = text;
+}
