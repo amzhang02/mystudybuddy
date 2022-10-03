@@ -8,8 +8,8 @@ if (reminder_name == null || reminder_name == "" || reminder_time == null || rem
 }
 else{
   text = "Reminder " + reminder_name + " set for " + reminder_time + " minutes from now.";
-
-  chrome.alarms.create(reminder_name, {delayInMinutes : parseInt(reminder_time)} );
+  document.getElementById("new reminder").innerHTML = text;
+  chrome.alarms.create(reminder_name, {delayInMinutes: parseInt(reminder_time), } );
 
   chrome.alarms.onAlarm.addListener(function(alarm){
     console.log(alarm)
