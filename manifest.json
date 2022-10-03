@@ -6,5 +6,5 @@
     "service_worker": "background.js"
   },
   "permissions": ["notifications", "storage", "alarms"],
-  "action": {}
+  "action": {"default_popup": "hello.html"}
 }
