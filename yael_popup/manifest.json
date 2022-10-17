@@ -2,7 +2,7 @@
     "name": "My Study Buddy",
     "version": "1.0.0",
     "description": "A reminders extension",
-    "permissions": ["tabs"],
+    "permissions": ["notifications", "tabs", "storage", "alarms"],
     "manifest_version": 3,
     "background": {
         "service_worker": "pop-up.js"

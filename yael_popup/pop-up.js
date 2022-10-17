@@ -10,9 +10,10 @@ chrome.runtime.onInstalled.addListener(async () => {
     //console log the ID of the tab so we know it's working
 });
 
-button.addEventListener("click", surprise());
+//b1.addEventListener("click", surprise());
 
 function surprise(){
-    window.alert("SURPRISE!\nIt works! Wooooooooooooo!");
+    
+    //alert("SURPRISE!\nIt works! Wooooooooooooo!");
 
 }
