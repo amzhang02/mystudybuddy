@@ -8,15 +8,15 @@ chrome.runtime.onInstalled.addListener(async () => {
     //the tab create command within chrome will return a tab that shows what is in the url (the html)
     console.log(`Created tab ${tab.id}`);
     //console log the ID of the tab so we know it's working
-    openTab();
 });
 
-/*const btnsurprise = document.getElementById('btn1')
+const btnsurprise = document.getElementById('btn1')
 console.log("buttonnnnnnn js: ", btnsurprise, "button in html for comp: ", document.getElementById('btn1'))
-btnsurprise.addEventListener("click", ()=>{
-    console.log("Clicked!!!")
-});
-*/
+btnsurprise.addEventListener("click", printTest());
+
+function printTest(){
+    console.log("heyo");
+}
 /*function surprise(){
     chrome.notifications.create({
         notificationsId? ,
