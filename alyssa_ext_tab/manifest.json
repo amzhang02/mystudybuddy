@@ -5,7 +5,7 @@
     "permissions": ["tabs", "http://*/*", "https://*/*", "activeTab"],
     "manifest_version": 3,
     "background": {
-        "service_worker": "ext_tab.js"
+        "service_worker": "./ext_tab.js"
     },
     "action": {
         "default_title": "Settings tab for My Study Buddy",
