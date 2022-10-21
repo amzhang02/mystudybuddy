@@ -5,7 +5,7 @@
     "permissions": ["notifications", "tabs", "storage", "alarms"],
     "manifest_version": 3,
     "background": {
-        "service_worker": "pop-up.js"
+        "service_worker": "background.js"
     },
     "action": {
         "default_title": "A Useful Reminders Extension",

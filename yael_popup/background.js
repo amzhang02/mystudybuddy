@@ -11,15 +11,21 @@ chrome.runtime.onInstalled.addListener(async () => {
     openTab();
 });
 
-//b1.addEventListener("click", surprise());
-
-function surprise(){
+/*const btnsurprise = document.getElementById('btn1')
+console.log("buttonnnnnnn js: ", btnsurprise, "button in html for comp: ", document.getElementById('btn1'))
+btnsurprise.addEventListener("click", ()=>{
+    console.log("Clicked!!!")
+});
+*/
+/*function surprise(){
     chrome.notifications.create({
-        
+        notificationsId? ,
+        options: 
+        callback?:function,
     });
 }
 
 function openTab(){
     chrome.tabs.create({});
-}
+}*/
 
