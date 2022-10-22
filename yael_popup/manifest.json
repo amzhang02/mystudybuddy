@@ -4,10 +4,7 @@
     "description": "A reminders extension",
     "permissions": ["notifications", "tabs", "storage", "alarms"],
     "manifest_version": 3,
-    "background": {
-        "service_worker": "popup.js",
-        "type": "module"
-    },
+    
     "action": {
         "default_title": "A Useful Reminders Extension",
         "default_popup": "popup.html"

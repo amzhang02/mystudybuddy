@@ -2,7 +2,7 @@
 
 chrome.runtime.onInstalled.addListener(async () => {
 //addListener is listening to what we want to do when this opens
-    let url = chrome.runtime.getURL("pop-up.html");
+    let url = chrome.getURL("pop-up.html");
     //open the html file with the name
     let tab = await chrome.tabs.create({ url });
     //the tab create command within chrome will return a tab that shows what is in the url (the html)
@@ -10,12 +10,13 @@ chrome.runtime.onInstalled.addListener(async () => {
     //console log the ID of the tab so we know it's working
 });
 
-const btnsurprise = document.getElementById('btn1')
-console.log("buttonnnnnnn js: ", btnsurprise, "button in html for comp: ", document.getElementById('btn1'))
-btnsurprise.addEventListener("click", printTest());
+const button1 = document.getElementById("button1");
+console.log("test: ", button1);
+button1.addEventListener("click", changeColor);
 
-function printTest(){
-    console.log("heyo");
+function changeColor(){
+    //document.body.style.backgroundColor = 'pink';
+    console.log("click");
 }
 /*function surprise(){
     chrome.notifications.create({
