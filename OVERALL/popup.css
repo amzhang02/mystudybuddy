@@ -1,0 +1,24 @@
+body{
+    width: 400px;
+    height: 400px;
+    background-color: lightblue;
+}
+h1{
+    background-color:rgb(204, 153, 255); 
+    border-width: 20px;
+    border-color: orange;
+}
+div{
+    background-color: aliceblue;
+}
+p1{
+    color: #4da6ff; 
+}
+p2{
+    color:#4da6ff;
+}
+button{
+    background-color: lightpink; 
+    color:gray; 
+}
+

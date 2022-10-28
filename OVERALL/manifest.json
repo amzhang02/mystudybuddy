@@ -1,0 +1,19 @@
+{
+    "name": "My Study Buddy",
+    "version": "1.0.0",
+    "manifest_version": 3,
+    "description": "A reminders extension",
+    "permissions": ["notifications", "tabs", "storage", "alarms", "activeTab"],
+    "background":{
+        "service_worker": "./background.js"
+    },
+    "action": {
+        "default_title": "A Useful Reminders Extension",
+        "default_popup": "popup.html"
+    },
+    "icons":{
+        "16": "visualdesign.jpg",
+        "48": "visualdesign.jpg",
+        "128": "visualdesign.jpg"
+    }
+}
