@@ -1,18 +1,23 @@
 <DOCTYPE html>
 <html>
-    <link rel="stylesheet" type="text/css" href="ext_tab.css">
     <head>
+        <link rel="stylesheet" type="text/css" href="ext_tab.css">
         <title> Welcome to My Study Buddy </title>
     </head>
     <body>
         <h1> Welcome to My Study Buddy </h1>
         <h2> Select a buddy to get started </h2>
-        <button id = 'boop'> 
-            <img width = "100px" height="100px" src = "./visualdesign.jpg">
-        </button>
+        <div class="section">
+            <div class="choice">
+                <img id = 'boop' width = "100" height="100" src = "./visualdesign.jpg">
+            </div>
+            <div class="choice">
+                <img id = 'boop2' width = "100" height="100" src = "./visualdesign.jpg">
+            </div>
+            <div class="choice">
+                <img id = 'boop3' width = "100" height="100" src = "./visualdesign.jpg">
+            </div>
+        </div>
+        <script src="ext_tab.js"></script>
     </body>
-    <script>
-        myButton = document.getElementById('boop')
-        myButton.onclick = () => {console.log('hello')}
-    </script>
 </html>
