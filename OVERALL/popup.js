@@ -28,7 +28,7 @@ chrome.runtime.onInstalled.addListener(async () => {
           text = "The reminder was cancelled";
         }
         else{
-          text = "Reminder " + reminder_name + " set for " + reminder_time + " minutes from now.";
+          text = "Reminder '" + reminder_name + "'" + "set for " + reminder_time + " minutes from now.";
       
           chrome.alarms.create(reminder_name, {delayInMinutes : parseInt(reminder_time)} );
       
@@ -37,9 +37,18 @@ chrome.runtime.onInstalled.addListener(async () => {
             alert(alarm.name + " has fired!");
           });
         }
-        document.getElementById("new reminder").innerHTML = text;
+        document.getElementById("new reminder set").innerHTML = text;
       }
     
+      function generalReminderForm(){
+        text = "You will now occasionally get reminders to stretch, drink water, and take a break from studying.";
+
+        chrome.alarms.create("drink water", {delayInMinutes : parseInt(0)} );
+        chrome.alarms.create("stretch", {delayInMinutes : parseInt(1)} );
+        chrome.alarms.create("take a break", {delayInMinutes : parseInt(2)} );
+
+        document.getElementById("new reminder set").innerHTML = text;
+      }
     /*function surprise(){
         chrome.notifications.create({
             notificationsId? ,
@@ -53,3 +62,4 @@ chrome.runtime.onInstalled.addListener(async () => {
     }*/
     
     document.getElementById("reminderbtn").addEventListener("click", openReminderForm);
+    document.getElementById("genreminderbtn").addEventListener("click", generalReminderForm);
