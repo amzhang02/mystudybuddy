@@ -12,8 +12,8 @@
         "default_popup": "popup.html"
     },
     "icons":{
-        "16": "visualdesign.jpg",
-        "48": "visualdesign.jpg",
-        "128": "visualdesign.jpg"
+        "16": "./Images/visualdesign.jpg",
+        "48": "./Images/visualdesign.jpg",
+        "128": "./Images/visualdesign.jpg"
     }
 }
