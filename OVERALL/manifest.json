@@ -3,9 +3,9 @@
     "version": "1.0.0",
     "manifest_version": 3,
     "description": "A reminders extension",
-    "permissions": ["notifications", "tabs", "storage", "alarms", "activeTab"],
+    "permissions": ["notifications", "tabs", "storage", "alarms", "activeTab", "scripting"],
     "background":{
-        "service_worker": "./background.js"
+        "service_worker": "background.js"
     },
     "action": {
         "default_title": "A Useful Reminders Extension",
