@@ -3,3 +3,13 @@ chrome.runtime.onInstalled.addListener(async() => {
     let tab = await chrome.tabs.create({url});
     console.log(`Created tab ${tab.id}`);
     });
+
+chrome.runtime.onStartup.addListener("pageshow", urlRead())
+
+
+async function urlRead(){
+    let checkURL = chrome.runtime.getURL();
+    if(checkURL.includes("instagram")){
+
+    }
+}
