@@ -34,18 +34,23 @@ chrome.runtime.onInstalled.addListener(async () => {
       
           chrome.alarms.onAlarm.addListener(function(alarm) {
             console.log(alarm);
-            alert(alarm.name + " has fired!");
+            alert(alarm.name);
           });
         }
         document.getElementById("new reminder set").innerHTML = text;
       }
-    
+    f
       function generalReminderForm(){
         text = "You will now occasionally get reminders to stretch, drink water, and take a break from studying.";
 
-        chrome.alarms.create("drink water", {delayInMinutes : parseInt(0)} );
-        chrome.alarms.create("stretch", {delayInMinutes : parseInt(1)} );
-        chrome.alarms.create("take a break", {delayInMinutes : parseInt(2)} );
+        chrome.alarms.create("drink water", {periodInMinutes : parseInt(1)} );
+        chrome.alarms.create("stretch", {periodInMinutes : parseInt(2)} );
+        chrome.alarms.create("take a break", {periodInMinutes : parseInt(3)} );
+
+        chrome.alarms.onAlarm.addListener(function(alarm) {
+          console.log(alarm);
+          alert(alarm.name);
+        });
 
         document.getElementById("new reminder set").innerHTML = text;
       }
