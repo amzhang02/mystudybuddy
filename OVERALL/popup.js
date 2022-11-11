@@ -20,6 +20,8 @@ chrome.runtime.onInstalled.addListener(async () => {
         chrome.tabs.create({url: "ext_tab.html"});
     }
 
+    let user_reminders = [];
+
     function openReminderForm() {
         var reminder_name = prompt("What do you want to name the reminder?");
         var reminder_time = prompt("How many minutes from now do you want to be reminded?");
@@ -29,7 +31,9 @@ chrome.runtime.onInstalled.addListener(async () => {
         }
         else{
           text = "Reminder '" + reminder_name + "'" + "set for " + reminder_time + " minutes from now.";
-      
+
+          user_reminders.push(reminder_name);
+          
           chrome.alarms.create(reminder_name, {delayInMinutes : parseInt(reminder_time)} );
       
           chrome.alarms.onAlarm.addListener(function(alarm) {
@@ -39,7 +43,7 @@ chrome.runtime.onInstalled.addListener(async () => {
         }
         document.getElementById("new reminder set").innerHTML = text;
       }
-    f
+    
       function generalReminderForm(){
         text = "You will now occasionally get reminders to stretch, drink water, and take a break from studying.";
 
@@ -52,6 +56,20 @@ chrome.runtime.onInstalled.addListener(async () => {
           alert(alarm.name);
         });
 
+        document.getElementById("new reminder set").innerHTML = text;
+      }
+
+      function clearReminders(){
+        chrome.alarms.clearAll();
+        text = "All reminders cleared.";
+        document.getElementById("new reminder set").innerHTML = text;
+      }
+
+      function cleargenReminders(){
+        chrome.alarms.clear("drink water");
+        chrome.alarms.clear("strech");
+        chrome.alarms.clear("take a break");
+        text = "General reminders stopped.";
         document.getElementById("new reminder set").innerHTML = text;
       }
     /*function surprise(){
@@ -68,3 +86,5 @@ chrome.runtime.onInstalled.addListener(async () => {
     
     document.getElementById("reminderbtn").addEventListener("click", openReminderForm);
     document.getElementById("genreminderbtn").addEventListener("click", generalReminderForm);
+    document.getElementById("remindersclear").addEventListener("click", clearReminders);
+    document.getElementById("genremindersclear").addEventListener("click", cleargenReminders);
