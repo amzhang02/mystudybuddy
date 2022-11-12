@@ -52,7 +52,22 @@ button{
 #phlamingo{
     cursor: pointer;
 }
-#boop{
+#water{
+    cursor: pointer;
+}
+#snack{
+    cursor: pointer;
+}
+#stretch{
+    cursor: pointer;
+}
+#mins30{
+    cursor: pointer;
+}
+#mins60{
+    cursor: pointer;
+}
+#mins120{
     cursor: pointer;
 }
 .choice{
