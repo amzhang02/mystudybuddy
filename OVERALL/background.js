@@ -23,7 +23,7 @@ chrome.alarms.onAlarm.addListener((alarm) =>{
     alert(alarm.name);
 });
 
-
+/*
 
 //reminder form
 function openReminderForm() {
@@ -62,3 +62,4 @@ function openReminderForm() {
     text = "General reminders stopped.";
     //document.getElementById("new reminder set").innerHTML = text;
   }
+  */
