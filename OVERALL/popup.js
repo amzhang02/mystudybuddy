@@ -9,15 +9,16 @@ chrome.runtime.onInstalled.addListener(async () => {
         console.log(`Created tab ${tab.id}`);
         //console log the ID of the tab so we know it's working
 });
-
+var buddy = 'phrog';
 const button1 = document.getElementById("button1");
-console.log("test: ", button1);
 button1.addEventListener("click", clickyclick);
+buttonList = document.getElementsByClassName("button");
 
 function clickyclick(){
     //document.body.style.backgroundColor = 'pink';
     console.log("click");
     chrome.tabs.create({url: "ext_tab.html"});
+
 }
 
 let user_reminders = [];
@@ -138,3 +139,24 @@ function openReminderForm() {
     document.getElementById("genreminderbtn").addEventListener("click", generalReminderForm);
     document.getElementById("clearUserReminders").addEventListener("click", clearReminders);
     document.getElementById("clearGenReminders").addEventListener("click", cleargenReminders);
+
+if(buddy == 'phrog'){
+  for(let i = 0; i < buttonList.length; i++){
+    buttonList[i].style.backgroundColor='#8ce3dc';
+  }
+}
+else if(buddy == 'phox'){
+  for(let i = 0; i < buttonList.length; i++){
+    buttonList[i].style.backgroundColor='#fb9493';
+  }
+}
+else if(buddy == 'phlamingo'){
+  for(let i = 0; i < buttonList.length; i++){
+    buttonList[i].style.backgroundColor='#fbcc34';
+  }
+}
+else{
+  for(let i = 0; i < buttonList.length; i++){
+    buttonList[i].style.backgroundColor='#454f5a';
+  }
+}
