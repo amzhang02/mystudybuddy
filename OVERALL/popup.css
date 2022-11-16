@@ -1,24 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
 body{
-    width: 400px;
-    height: 400px;
-    background-color: lightblue;
-}
-h1{
-    background-color:rgb(204, 153, 255); 
-    border-width: 20px;
-    border-color: orange;
-}
-div{
-    background-color: aliceblue;
+    font-family: 'Inter', sans-serif;
+    background-color: #F8F8F8;
+    text-align: center;
+    height: 350px;
+    width: 275px;
 }
 p1{
     color: #4da6ff; 
+}
+#buddy{
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top: 30px;
+}
+h1{
+    font-family: 'Inter', sans-serif;
+    color: black;
+    text-align: center;
+    position: relative;
+    top: 5px;
+    font-size: 25pt;
 }
 p2{
     color:#4da6ff;
 }
 button{
-    background-color: lightpink; 
-    color:gray; 
+    background-color: green; 
+    color:black; 
 }
 

@@ -1,3 +1,4 @@
+
 {
     "name": "My Study Buddy",
     "version": "1.0.0",
@@ -7,13 +8,15 @@
     "background":{
         "service_worker": "background.js"
     },
+    "icons":{
+        "16": "Images/msb_logo16.jpg",
+        "48": "Images/msb_logo48.jpg",
+        "128": "Images/msb_logo128.jpg"
+    },
     "action": {
         "default_title": "A Useful Reminders Extension",
-        "default_popup": "popup.html"
-    },
-    "icons":{
-        "16": "./Images/msb_logo.jpg",
-        "48": "./Images/msb_logo.jpg",
-        "128": "./Images/msb_logo.jpg"
+        "default_popup": "popup.html",
+        "default_icon": "Images/msb_logo.jpg"
     }
+    
 }
