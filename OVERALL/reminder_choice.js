@@ -3,7 +3,7 @@ let reminderChoice = ''
 //let user_choice = document.querySelector('#user_choice')
 
 //For the Phrog button
-waterChoice = document.getElementById('water')
+reminderChoice = document.getElementById('water')
 //phrogChoice.onclick = () => {console.log('phrog')}
 document.querySelector('#water').onclick = function () {
     reminderChoice = 'water';
