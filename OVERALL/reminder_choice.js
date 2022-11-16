@@ -1,25 +1,48 @@
+// Variables
 let reminderChoice = ''
+let waterClicked = false;
+let snackClicked = false;
+let stretchClicked = false;
+
 //variable for testing
 //let user_choice = document.querySelector('#user_choice')
 
+document.querySelector('#prevButton').onclick = function() {
+  location.replace('buddy_choice.html')
+}
+
+document.querySelector('#nextButton').onclick = function() {
+  if(waterClicked || snackClicked || stretchClicked){
+    location.replace("time_choice.html" + location.search + "&water=" + waterClicked + "&snack=" + snackClicked + "&stretch=" + stretchClicked)
+  } else {
+    alert("Must select at least one option!");
+  }
+}
+
 //For the Phrog button
-reminderChoice = document.getElementById('water')
-//phrogChoice.onclick = () => {console.log('phrog')}
 document.querySelector('#water').onclick = function () {
-    reminderChoice = 'water';
-    location.replace('time_choice.html')
+    waterClicked = !waterClicked;
+    if(waterClicked) {
+      this.style.border = "1px solid blue";
+    } else {
+      this.style.border = "";
+    }
 }
 //For the Phox button
-phoxChoice = document.getElementById('snack')
-//phoxChoice.onclick = () => {console.log('phox')}
 document.querySelector('#snack').onclick = function () {
-    reminderChoice = 'snack';
-    //location.replace('reminder_choice.html')
+    snackClicked = !snackClicked;
+    if(snackClicked) {
+      this.style.border = "1px solid blue";
+    } else {
+      this.style.border = "";
+    }
 }
 //For the Phlamingo button
-phlamingoChoice = document.getElementById('stretch')
-//phlamingoChoice.onclick = () => {console.log('phlamingo')}
 document.querySelector('#stretch').onclick = function () {
-    reminderChoice = 'stretch';
-    //location.replace('reminder_choice.html')
+    stretchClicked = !stretchClicked;
+    if(stretchClicked) {
+      this.style.border = "1px solid blue";
+    } else {
+      this.style.border = "";
+    }
 }
