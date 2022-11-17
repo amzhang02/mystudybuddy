@@ -9,14 +9,13 @@
         "service_worker": "background.js"
     },
     "icons":{
-        "16": "Images/msb_logo16.jpg",
-        "48": "Images/msb_logo48.jpg",
-        "128": "Images/msb_logo128.jpg"
+        "16": "Images/msb_logo16.png",
+        "48": "Images/msb_logo48.png",
+        "128": "Images/msb_logo128.png"
     },
     "action": {
         "default_title": "A Useful Reminders Extension",
-        "default_popup": "popup.html",
-        "default_icon": "Images/msb_logo.jpg"
+        "default_popup": "popup.html"
     }
     
 }
