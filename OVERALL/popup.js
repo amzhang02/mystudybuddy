@@ -8,15 +8,19 @@ chrome.runtime.onInstalled.addListener(async () => {
         console.log(`Created tab ${tab.id}`);
         //console log the ID of the tab so we know it's working
 });
-var buddy = 'phrog';
+var buddy = '';
+var buddyStringAccess = './Images/'+buddy+'_copy.jpg';
 const button1 = document.getElementById("introbtn");
 button1.addEventListener("click", clickyclick);
-buttonList = document.getElementsByClassName("button");
+var buttonList = document.getElementsByClassName("button");
 
 function clickyclick(){
     //document.body.style.backgroundColor = 'pink';
     console.log("click");
-    chrome.tabs.create({url: "ext_tab.html"});
+    //chrome.tabs.create({url: "ext_tab.html"});
+    buddy = 'phrog';
+    buddyStringAccess = './Images/'+buddy+'_copy.jpg';
+    buddySwap();
 }
 
 let user_reminders = [];
@@ -68,23 +72,26 @@ document.getElementById("genreminderbtn").addEventListener("click", generalRemin
 document.getElementById("clearUserReminders").addEventListener("click", clearReminders);
 document.getElementById("clearGenReminders").addEventListener("click", cleargenReminders);
 
-if(buddy == 'phrog'){
-  for(let i = 0; i < buttonList.length; i++){
-    buttonList[i].style.backgroundColor='#8ce3dc';
+function buddySwap(){
+  if(buddy == 'phrog'){
+    for(let i = 0; i < buttonList.length; i++){
+      buttonList[i].style.backgroundColor='#8ce3dc';
+    }
+    document.getElementById('buddy').src=buddyStringAccess;
   }
-}
-else if(buddy == 'phox'){
-  for(let i = 0; i < buttonList.length; i++){
-    buttonList[i].style.backgroundColor='#fb9493';
+  else if(buddy == 'phox'){
+    for(let i = 0; i < buttonList.length; i++){
+      buttonList[i].style.backgroundColor='#fb9493';
+    }
   }
-}
-else if(buddy == 'phlamingo'){
-  for(let i = 0; i < buttonList.length; i++){
-    buttonList[i].style.backgroundColor='#fbcc34';
+  else if(buddy == 'phlamingo'){
+    for(let i = 0; i < buttonList.length; i++){
+      buttonList[i].style.backgroundColor='#fbcc34';
+    }
   }
-}
-else{
-  for(let i = 0; i < buttonList.length; i++){
-    buttonList[i].style.backgroundColor='#454f5a';
+  else{
+    for(let i = 0; i < buttonList.length; i++){
+      buttonList[i].style.backgroundColor='#454f5a';
+    }
   }
 }
