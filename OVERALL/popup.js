@@ -8,8 +8,8 @@ chrome.runtime.onInstalled.addListener(async () => {
         console.log(`Created tab ${tab.id}`);
         //console log the ID of the tab so we know it's working
 });
-var buddy = '';
-var buddyStringAccess = './Images/'+buddy+'_copy.jpg';
+//var buddyStringAccess = './Images/'+localStorage.getItem('buddy')+'_copy.jpg';
+var buddyStringAccess, buddy;
 const button1 = document.getElementById("introbtn");
 button1.addEventListener("click", clickyclick);
 var buttonList = document.getElementsByClassName("button");
@@ -18,11 +18,11 @@ function clickyclick(){
     //document.body.style.backgroundColor = 'pink';
     console.log("click");
     //chrome.tabs.create({url: "ext_tab.html"});
-    buddy = 'phrog';
-    buddyStringAccess = './Images/'+buddy+'_copy.jpg';
+    localStorage.setItem('buddy', 'phrog');
+    buddyStringAccess = './Images/'+localStorage.getItem('buddy')+'_copy.jpg';
     buddySwap();
+    //idea for accessing alarms for background is through html, good luck self
 }
-
 let user_reminders = [];
 
 //commented out to test background.js
@@ -73,18 +73,19 @@ document.getElementById("clearUserReminders").addEventListener("click", clearRem
 document.getElementById("clearGenReminders").addEventListener("click", cleargenReminders);
 
 function buddySwap(){
-  if(buddy == 'phrog'){
+  if(localStorage.getItem('buddy') == 'phrog'){
     for(let i = 0; i < buttonList.length; i++){
       buttonList[i].style.backgroundColor='#8ce3dc';
     }
     document.getElementById('buddy').src=buddyStringAccess;
+    localStorage.setItem('buddy', 'phrog')
   }
-  else if(buddy == 'phox'){
+  else if(localStorage.getItem('buddy') == 'phox'){
     for(let i = 0; i < buttonList.length; i++){
       buttonList[i].style.backgroundColor='#fb9493';
     }
   }
-  else if(buddy == 'phlamingo'){
+  else if(localStorage.getItem('buddy') == 'phlamingo'){
     for(let i = 0; i < buttonList.length; i++){
       buttonList[i].style.backgroundColor='#fbcc34';
     }
