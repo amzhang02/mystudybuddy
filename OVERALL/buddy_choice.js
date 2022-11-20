@@ -8,13 +8,13 @@ let phlamingoClicked = false;
 document.querySelector('#nextButton').onclick = function () {
     if(phrogClicked) {
         buddyChoice = 'phrog';
-        location.replace('reminder_choice.html?buddy=phrog');
+        location.replace('reminder_choice.html?buddy=phrog&&&');
     } else if(phoxClicked) {
         buddyChoice = 'phox';
-        location.replace('reminder_choice.html?buddy=phox');
+        location.replace('reminder_choice.html?buddy=phox&&&');
     } else if(phlamingoClicked) {
         buddyChoice = 'phlamingo';
-        location.replace('reminder_choice.html?buddy=phlamingo');
+        location.replace('reminder_choice.html?buddy=phlamingo&&&');
     } else {
         alert("You must select a buddy to continue!");
     }
