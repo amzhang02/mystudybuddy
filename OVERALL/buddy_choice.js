@@ -1,3 +1,4 @@
+buddyChoice = '';
 let phrogClicked = false;
 let phoxClicked = false;
 let phlamingoClicked = false;
@@ -6,11 +7,14 @@ let phlamingoClicked = false;
 
 document.querySelector('#nextButton').onclick = function () {
     if(phrogClicked) {
-        location.replace('reminder_choice.html?buddy=phrog&&&');
+        buddyChoice = 'phrog';
+        location.replace('reminder_choice.html?buddy=phrog');
     } else if(phoxClicked) {
-        location.replace('reminder_choice.html?buddy=phox&&&');
+        buddyChoice = 'phox';
+        location.replace('reminder_choice.html?buddy=phox');
     } else if(phlamingoClicked) {
-        location.replace('reminder_choice.html?buddy=phlamingo&&&');
+        buddyChoice = 'phlamingo';
+        location.replace('reminder_choice.html?buddy=phlamingo');
     } else {
         alert("You must select a buddy to continue!");
     }
