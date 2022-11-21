@@ -14,7 +14,30 @@ document.querySelector('#saveButton').onclick = function () {
     /*console.log('thanks.html' + location.search + 
     '&insta=' + instagram + '&fb=' + facebook + '&tw=' + 
     twitter + '&yt=' + youtube + '&sc=' + snapchat + '&tt=' + tiktok);*/
-
+    if(instagram){
+        blockThis.push("instagram");
+    }
+    if(facebook){
+        blockThis.push("facebook");
+    }
+    if(twitter){
+        blockThis.push("twitter");
+    }
+    if(youtube){
+        blockThis.push("youtube");
+    }
+    if(snapchat){
+        blockThis.push("snapchat");
+    }
+    if(tiktok){
+        blockThis.push("tiktok");
+    }
+    chrome.runtime.sendMessage(
+        {message: "blockList", blocked: blockThis}, function(response){
+          console.log(response);
+        }
+    );
+    
     location.replace('thanks.html' + location.search + 
     '&ig=' + instagram + '&fb=' + facebook + '&tw=' + 
     twitter + '&yt=' + youtube + '&sc=' + snapchat + '&tt=' + tiktok);
