@@ -9,10 +9,9 @@ chrome.runtime.onInstalled.addListener(async () => {
         //console log the ID of the tab so we know it's working
 });
 const intro = document.getElementById("introbtn");
-const activebtn = document.getElementById("activebtn");
-let activeOn = Boolean(false);
+const refreshbtn = document.getElementById("refreshbtn");
 intro.addEventListener("click", clickyclick);
-activebtn.addEventListener("click", flip);
+refreshbtn.addEventListener("click", refresh);
 var buttonList = document.getElementsByClassName("button");
 
 //we need this buddy information
@@ -23,26 +22,17 @@ buddySwap();
 
 function clickyclick(){ //intro tab, currently a test for buddy change
   console.log("click");
-  //chrome.tabs.create({url: "buddy_choice.html"});
-  //send message to GET
-  chrome.runtime.sendMessage(
+  chrome.tabs.create({url: "buddy_choice.html"});  
+}
+
+//NON FUNCTIONAL YET
+function refresh(){
+   chrome.runtime.sendMessage(
     {message: "getBuddy"}, function(response){
       console.log("ahhhhhhhhhhh: ", response);
       localStorage.setItem('buddy', response);
       buddySwap();
     });
-  //idea for accessing alarms for background is through html, good luck self
-}
-
-function flip(){
-  activeOn = !activeOn;
-  console.log("FLIP: ", activeOn);
-  if(activeOn){
-    activebtn.innerHTML = ("ACTIVE");
-  }
-  else{
-    activebtn.innerHTML = ("INACTIVE");
-  }
 }
 
 let user_reminders = [];

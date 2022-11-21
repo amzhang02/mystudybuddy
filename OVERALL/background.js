@@ -4,8 +4,7 @@ chrome.runtime.onInstalled.addListener(async() => {
     console.log(`Created tab ${tab.id}`);
     });
 
-let blockingList = ["instagram"];
-let holder = ["instagram", "facebook", "twitter", "youtube"];
+let blockingList = [];
 let buddy = '';
 //when url in a tab changes this is activated
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab){ 
@@ -14,7 +13,7 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab){
     for(let i = 0; i < blockingList.length; i++){
         if(checkURL.includes(blockingList[i])){
         //let oops = chrome.runtime.getURL('./Images/', buddy, '_copy.jpg')
-        chrome.tabs.remove(tab.id, function(){});
+        chrome.tabs.update(null,({url: "attempt.html"}));
         }
     }
 });
@@ -33,26 +32,12 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
         sendResponse(buddy);
     }
     
-    
-
+    if(request.message === "blockList"){
+        blockingList = request.blocked;
+        console.log("blocking: ", blockingList);
+        sendResponse("Blocked");
+    }
 })
-
-/*chrome.runtime.onMessage.addListener(function(message,sender,response){
-    if(messsage == "buddy"){
-        console.log("kk it went: ", message);
-        localStorage.setItem('buddy', "phox");
-        sendResponse({response: "let's see"});
-    }
-    else if(message.name == "generalReminders"){
-        
-    }
-    else if(message.name == "timers"){
-
-    }
-    else if(message.name == "blockers"){
-
-    }
-});*/
 
 //alarms! woo!
 chrome.alarms.onAlarm.addListener((alarm) =>{
