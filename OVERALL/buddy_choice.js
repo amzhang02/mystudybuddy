@@ -18,6 +18,10 @@ document.querySelector('#nextButton').onclick = function () {
     } else {
         alert("You must select a buddy to continue!");
     }
+    chrome.runtime.sendMessage(
+        {message: "setBuddy", buddy: buddyChoice}, function(response){
+          console.log("set buddy: ", response);
+    });
 }
 
 //For the Phrog button

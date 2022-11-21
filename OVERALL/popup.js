@@ -8,32 +8,44 @@ chrome.runtime.onInstalled.addListener(async () => {
         console.log(`Created tab ${tab.id}`);
         //console log the ID of the tab so we know it's working
 });
-var buddyStringAccess;
-const button1 = document.getElementById("introbtn");
-button1.addEventListener("click", clickyclick);
+const intro = document.getElementById("introbtn");
+const activebtn = document.getElementById("activebtn");
+let activeOn = Boolean(false);
+intro.addEventListener("click", clickyclick);
+activebtn.addEventListener("click", flip);
 var buttonList = document.getElementsByClassName("button");
 
-function clickyclick(){
-    console.log("click");    
-    //send message to SET
-    chrome.runtime.sendMessage(
-      {message: "setBuddy", buddy: "phlamingo"}, function(response){
-        //console.log("ahhhhhhhhhhh: ", response);
-      });
+//we need this buddy information
+var buddy = localStorage.getItem('buddy');
+console.log("current buddy: ", buddy);
+var buddyStringAccess = './Images/'+buddy+'_copy.jpg';
+buddySwap();
 
-    //send message to GET
-    chrome.runtime.sendMessage(
-      {message: "getBuddy"}, function(response){
-        console.log("ahhhhhhhhhhh: ", response);
-        localStorage.setItem('buddy', response);
-      });
-    buddyStringAccess = './Images/'+localStorage.getItem('buddy')+'_copy.jpg';
-    buddySwap();
-    //idea for accessing alarms for background is through html, good luck self
+function clickyclick(){ //intro tab, currently a test for buddy change
+  console.log("click");
+  //chrome.tabs.create({url: "buddy_choice.html"});
+  //send message to GET
+  chrome.runtime.sendMessage(
+    {message: "getBuddy"}, function(response){
+      console.log("ahhhhhhhhhhh: ", response);
+      localStorage.setItem('buddy', response);
+      buddySwap();
+    });
+  //idea for accessing alarms for background is through html, good luck self
 }
-let user_reminders = [];
 
-//commented out to test background.js
+function flip(){
+  activeOn = !activeOn;
+  console.log("FLIP: ", activeOn);
+  if(activeOn){
+    activebtn.innerHTML = ("ACTIVE");
+  }
+  else{
+    activebtn.innerHTML = ("INACTIVE");
+  }
+}
+
+let user_reminders = [];
 
 function openReminderForm() {
   var reminder_name = prompt("What do you want to name the reminder?");
@@ -81,25 +93,26 @@ document.getElementById("clearUserReminders").addEventListener("click", clearRem
 document.getElementById("clearGenReminders").addEventListener("click", cleargenReminders);
 
 function buddySwap(){
+  buddy = localStorage.getItem('buddy');
+  buddyStringAccess = './Images/'+buddy+'_copy.jpg';
   if(localStorage.getItem('buddy') == 'phrog'){
     for(let i = 0; i < buttonList.length; i++){
       buttonList[i].style.backgroundColor='#8ce3dc';
     }
     document.getElementById('buddy').src=buddyStringAccess;
   }
-  else if(localStorage.getItem('buddy') == 'phox'){
+  else if(buddy == 'phox'){
     for(let i = 0; i < buttonList.length; i++){
       buttonList[i].style.backgroundColor='#fb9493';
     }
     document.getElementById('buddy').src=buddyStringAccess;
 
   }
-  else if(localStorage.getItem('buddy') == 'phlamingo'){
+  else if(buddy == 'phlamingo'){
     for(let i = 0; i < buttonList.length; i++){
       buttonList[i].style.backgroundColor='#fbcc34';
     }
     document.getElementById('buddy').src=buddyStringAccess;
-
   }
   else{
     for(let i = 0; i < buttonList.length; i++){

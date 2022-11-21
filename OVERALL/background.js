@@ -11,24 +11,17 @@ let buddy = '';
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab){ 
     //console.log(tab.url);
     checkURL = tab.url.toLowerCase()
-    /*if(checkURL.includes("buddy=")){
-        let start = checkURL.indexOf("buddy=") + 6;
-        let end = checkURL.indexOf("&&&")
-        let buddyMessage = checkURL.substring(start,end);
-        //console.log("TESTTEST: ", buddyMessage)
-    }*/
     for(let i = 0; i < blockingList.length; i++){
         if(checkURL.includes(blockingList[i])){
-        let oops = chrome.runtime.getURL('../Images/Phox_copy.jpg')
-        chrome.tabs.update(null, {url: oops});
+        //let oops = chrome.runtime.getURL('./Images/', buddy, '_copy.jpg')
+        chrome.tabs.remove(tab.id, function(){});
         }
     }
 });
 //background listening for messages
 //messages include: buddy request, buddy send
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
-    console.log("ugh");
-
+    //console.log("ugh");
     if(request.message === "setBuddy"){
         console.log("setting");
         buddy = request.buddy
@@ -64,5 +57,16 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
 //alarms! woo!
 chrome.alarms.onAlarm.addListener((alarm) =>{
     console.log(alarm.name); //ok so this DOES hear the alarms when the popup part closes
-    
+    if(alarm.name === "water"){
+        //chrome.tabs.create({url: "./Images.water_copy.jpg"})
+    }
+    if(alarm.name === "stretch"){
+        //chrome.tabs.create({url: "./Images.stretch_copy.jpg"})
+
+    }
+    if(alarm.name === "snack"){
+        //chrome.tabs.create({url: "./Images.snack_copy.jpg"})
+    }
+    //chrome.tabs.create({url: "./Images.water_copy.jpg"})
+
 });
