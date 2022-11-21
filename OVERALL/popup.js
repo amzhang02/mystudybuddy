@@ -8,17 +8,25 @@ chrome.runtime.onInstalled.addListener(async () => {
         console.log(`Created tab ${tab.id}`);
         //console log the ID of the tab so we know it's working
 });
-//var buddyStringAccess = './Images/'+localStorage.getItem('buddy')+'_copy.jpg';
-var buddyStringAccess, buddy;
+var buddyStringAccess;
 const button1 = document.getElementById("introbtn");
 button1.addEventListener("click", clickyclick);
 var buttonList = document.getElementsByClassName("button");
 
 function clickyclick(){
-    //document.body.style.backgroundColor = 'pink';
-    console.log("click");
-    //chrome.tabs.create({url: "ext_tab.html"});
-    localStorage.setItem('buddy', 'phrog');
+    console.log("click");    
+    //send message to SET
+    chrome.runtime.sendMessage(
+      {message: "setBuddy", buddy: "phlamingo"}, function(response){
+        //console.log("ahhhhhhhhhhh: ", response);
+      });
+
+    //send message to GET
+    chrome.runtime.sendMessage(
+      {message: "getBuddy"}, function(response){
+        console.log("ahhhhhhhhhhh: ", response);
+        localStorage.setItem('buddy', response);
+      });
     buddyStringAccess = './Images/'+localStorage.getItem('buddy')+'_copy.jpg';
     buddySwap();
     //idea for accessing alarms for background is through html, good luck self
@@ -78,21 +86,25 @@ function buddySwap(){
       buttonList[i].style.backgroundColor='#8ce3dc';
     }
     document.getElementById('buddy').src=buddyStringAccess;
-    localStorage.setItem('buddy', 'phrog')
   }
   else if(localStorage.getItem('buddy') == 'phox'){
     for(let i = 0; i < buttonList.length; i++){
       buttonList[i].style.backgroundColor='#fb9493';
     }
+    document.getElementById('buddy').src=buddyStringAccess;
+
   }
   else if(localStorage.getItem('buddy') == 'phlamingo'){
     for(let i = 0; i < buttonList.length; i++){
       buttonList[i].style.backgroundColor='#fbcc34';
     }
+    document.getElementById('buddy').src=buddyStringAccess;
+
   }
   else{
     for(let i = 0; i < buttonList.length; i++){
       buttonList[i].style.backgroundColor='#454f5a';
     }
+    document.getElementById('buddy').src='./Images/msb_logo.jpg';
   }
 }
