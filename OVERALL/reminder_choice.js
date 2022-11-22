@@ -8,7 +8,7 @@ let stretchClicked = false;
 //let user_choice = document.querySelector('#user_choice')
 
 document.querySelector('#prevButton').onclick = function() {
-  location.replace('buddy_choice.html')
+  location.replace('buddy_choice.html');
 }
 
 document.querySelector('#nextButton').onclick = function() {

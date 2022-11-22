@@ -1,13 +1,16 @@
-
 let instagram = false;
 let facebook = false;
 let twitter = false;
 let youtube = false;
 let snapchat = false;
 let tiktok = false;
+let blockThis = [];
+
+let queryString = location.search;
+let prevQueryString = queryString.split('waterTime=')[0];
 
 document.querySelector('#prevButton').onclick = function () {
-    location.replace('time_choice.html');
+    location.replace('time_choice.html' + prevQueryString);
 }
 
 document.querySelector('#saveButton').onclick = function () {

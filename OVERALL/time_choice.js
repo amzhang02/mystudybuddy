@@ -1,4 +1,6 @@
 let queryString = location.search;
+let prevQueryString = queryString.split('&waterTime=')[0];
+
 let water = queryString.split("water=")[1].split("&")[0];
 let snack = queryString.split("snack=")[1].split("&")[0];
 let stretch = queryString.split("stretch=")[1].split("&")[0];
