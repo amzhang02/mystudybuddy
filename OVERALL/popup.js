@@ -29,7 +29,9 @@ function clickyclick(){ //intro tab, currently a test for buddy change
 function refresh(){
    chrome.runtime.sendMessage(
     {message: "getBuddy"}, function(response){
-      console.log("ahhhhhhhhhhh: ", response);
+      if(response === ''){
+
+      }
       localStorage.setItem('buddy', response);
       buddySwap();
     });
@@ -106,7 +108,7 @@ function buddySwap(){
   }
   else{
     for(let i = 0; i < buttonList.length; i++){
-      buttonList[i].style.backgroundColor='#454f5a';
+      buttonList[i].style.backgroundColor='#F8F8F8';
     }
     document.getElementById('buddy').src='./Images/msb_logo.jpg';
   }
