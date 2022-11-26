@@ -93,7 +93,7 @@ function cleargenReminders(){
 }
 
 document.getElementById("reminderbtn").addEventListener("click", openReminderForm);
-//document.getElementById("genreminderbtn").addEventListener("click", generalReminderForm);
+generalReminderForm();
 document.getElementById("clearUserReminders").addEventListener("click", clearReminders);
 document.getElementById("clearGenReminders").addEventListener("click", cleargenReminders);
 
