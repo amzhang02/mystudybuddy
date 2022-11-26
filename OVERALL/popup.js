@@ -8,33 +8,32 @@ chrome.runtime.onInstalled.addListener(async () => {
         console.log(`Created tab ${tab.id}`);
         //console log the ID of the tab so we know it's working
 });
-const intro = document.getElementById("introbtn");
-const refreshbtn = document.getElementById("refreshbtn");
-intro.addEventListener("click", clickyclick);
-refreshbtn.addEventListener("click", refresh);
+const settings = document.getElementById("settings");
+settings.addEventListener("click", refresh);
 var buttonList = document.getElementsByClassName("button");
-
+let active = Boolean(true);
 //we need this buddy information
+refresh(); //buddy is now automatically received upon opening
+//no longer need a refresh button specifically
 var buddy = localStorage.getItem('buddy');
 console.log("current buddy: ", buddy);
 var buddyStringAccess = './Images/'+buddy+'_copy.jpg';
-buddySwap();
 
-function clickyclick(){ //intro tab, currently a test for buddy change
-  console.log("click");
-  chrome.tabs.create({url: "buddy_choice.html"});  
-}
-
-//NON FUNCTIONAL YET
 function refresh(){
-   chrome.runtime.sendMessage(
-    {message: "getBuddy"}, function(response){
-      if(response === ''){
-
-      }
-      localStorage.setItem('buddy', response);
-      buddySwap();
-    });
+  chrome.runtime.sendMessage(
+   {message: "getBuddy"}, function(response){
+     if(response === ''){
+       active = false;
+     }
+     else{
+       active = true;
+     }
+     localStorage.setItem('buddy', response);
+     buddySwap();
+   });
+ if(!active){
+   chrome.tabs.create({url: "buddy_choice.html"});
+ }
 }
 
 let user_reminders = [];
@@ -94,7 +93,7 @@ function cleargenReminders(){
 }
 
 document.getElementById("reminderbtn").addEventListener("click", openReminderForm);
-document.getElementById("genreminderbtn").addEventListener("click", generalReminderForm);
+//document.getElementById("genreminderbtn").addEventListener("click", generalReminderForm);
 document.getElementById("clearUserReminders").addEventListener("click", clearReminders);
 document.getElementById("clearGenReminders").addEventListener("click", cleargenReminders);
 

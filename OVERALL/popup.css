@@ -27,7 +27,16 @@ p2{
     color:#4da6ff;
 }
 button{
-    background-color: green; 
+    background-color: #F8F8F8; 
     color:black; 
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 175px;
+}
+#settings{
+    position: absolute;
+    top: 5px;
+    left: 5px;
 }
 
