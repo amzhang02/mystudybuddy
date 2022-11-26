@@ -55,3 +55,16 @@ chrome.alarms.onAlarm.addListener((alarm) =>{
     //chrome.tabs.create({url: "./Images.water_copy.jpg"})
 
 });
+
+chrome.alarms.onAlarm.addListener(function(alarm) {
+    console.log(alarm);
+    chrome.notifications.create(
+        {
+            title: 'MyStudyBuddy',
+            message: alarm.name,
+            type: 'basic',
+            iconUrl: 'https://cdn-icons-png.flaticon.com/512/92/92386.png'
+
+        }
+    )
+  });
