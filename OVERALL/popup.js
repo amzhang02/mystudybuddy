@@ -51,13 +51,13 @@ function openReminderForm() {
     user_reminders.push(reminder_name);
     chrome.alarms.create(reminder_name, {delayInMinutes : parseInt(reminder_time)} );
 
-    if (alarmCreated==false){
-        chrome.alarms.onAlarm.addListener(function(alarm) {
-          console.log(alarm);
-          alert(alarm.name);
-        });
-       alarmCreated = true;
-    }
+    // if (alarmCreated==false){
+    //     chrome.alarms.onAlarm.addListener(function(alarm) {
+    //       console.log(alarm);
+    //       alert(alarm.name);
+    //     });
+    //    alarmCreated = true;
+    // }
   }
   document.getElementById("new reminder set").innerHTML = text;
 }
@@ -67,16 +67,18 @@ function generalReminderForm(){
   chrome.alarms.create("drink water", {periodInMinutes : parseInt(2)} );
   chrome.alarms.create("take a break", {periodInMinutes : parseInt(3)} );
     
-  if (alarmCreated==false){
-        chrome.alarms.onAlarm.addListener(function(alarm) {
-          console.log(alarm);
-          alert(alarm.name);
-        });
-      alarmCreated = true;
-    }
+  // if (alarmCreated==false){
+  //       chrome.alarms.onAlarm.addListener(function(alarm) {
+  //         console.log(alarm);
+  //         alert(alarm.name);
+  //       });
+  //     alarmCreated = true;
+  //   }
 
   text = "You will now occasionally get reminders to stretch, drink water, and take a break from studying.";
+  document.getElementById("new reminder set").innerHTML = text;
 }
+
 function clearReminders(){
   chrome.alarms.clearAll();
   text = "All reminders cleared.";
