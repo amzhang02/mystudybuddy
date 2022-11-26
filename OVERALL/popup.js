@@ -56,6 +56,7 @@ function openReminderForm() {
           console.log(alarm);
           alert(alarm.name);
         });
+       alarmCreated = true;
     }
   }
   document.getElementById("new reminder set").innerHTML = text;
@@ -71,6 +72,7 @@ function generalReminderForm(){
           console.log(alarm);
           alert(alarm.name);
         });
+      alarmCreated = true;
     }
 
   text = "You will now occasionally get reminders to stretch, drink water, and take a break from studying.";
