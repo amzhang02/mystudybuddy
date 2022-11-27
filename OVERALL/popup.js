@@ -8,8 +8,6 @@ chrome.runtime.onInstalled.addListener(async () => {
         console.log(`Created tab ${tab.id}`);
         //console log the ID of the tab so we know it's working
 
-        var recurringReminders = [];
-        var recurringTimes = [];
 });
 
 //ALL BUTTONS ON POP-UP CLICK EVENTS
@@ -24,9 +22,9 @@ var buddy = localStorage.getItem('buddy');
 console.log("bud: ", buddy);
 var buddyStringAccess = './Images/'+buddy+'_copy.jpg';
 let user_reminders = []; //these are the custom reminders
-recurringReminders = localStorage.getItem("recurringReminders"); //this is the general reminders
+var recurringReminders = localStorage.getItem("recurringReminders"); //this is the general reminders
 console.log("recur: ", recurringReminders);
-recurringTimes = localStorage.getItem("recurringTimes");
+var recurringTimes = localStorage.getItem("recurringTimes");
 var alarmCreated = false;
 
 refreshBuddy();
@@ -37,29 +35,34 @@ async function refresh(){
 }
 
 function refreshBuddy(){
-  chrome.runtime.sendMessage(
+  if(localStorage.getItem("buddy") == "" || localStorage.getItem("buddy") == null){
+    chrome.runtime.sendMessage(
    {message: "getBuddy"}, function(response){
      localStorage.setItem('buddy', response);
-     buddySwap();
    });
-   console.log("REFRESHED BUDDY");
+  }
+  buddySwap();
+  console.log("REFRESHED BUDDY");
 }
 
 async function refreshReminders(){
-  console.log("REMINDERS REMINDERS REMINDERS REMINDERS");
-  chrome.runtime.sendMessage({message: "getGeneralReminders"}, function(response){
-    localStorage.setItem('recurringReminders', response);
-    console.log("received names: ", localStorage.getItem('recurringReminders'));
-  });
-  chrome.runtime.sendMessage({message:"getGenTimes"}, function(response){
-    localStorage.setItem('recurringTimes', response);
-    recurringTimes = localStorage.getItem("recurringTimes");
-    console.log("received times: ", localStorage.getItem("recurringTimes"));
-  });
-  console.log("COOL COOL COOL");
+  if(localStorage.getItem("recurringReminders") == "" || localStorage.getItem("recurringReminders") == [] || localStorage.getItem("recurringReminders") == null){
+    chrome.runtime.sendMessage({message: "getGeneralReminders"}, function(response){
+      localStorage.setItem('recurringReminders', response);
+      console.log("received names: ", localStorage.getItem('recurringReminders'));
+    });
+    chrome.runtime.sendMessage({message:"getGenTimes"}, function(response){
+      localStorage.setItem('recurringTimes', response);
+      recurringTimes = localStorage.getItem("recurringTimes");
+      console.log("received times: ", localStorage.getItem("recurringTimes"));
+    });
+  }
 }
 
 function setting(){
+  localStorage.setItem("recurringReminders", null);
+  localStorage.setItem("recurringTimes", null);
+  localStorage.setItem("buddy", "");
   chrome.tabs.create({url:"buddy_choice.html"});
 }
 
@@ -123,8 +126,8 @@ function cleargenReminders(){
   if(recurringReminders.includes("stretch")){
     chrome.alarms.clear("stretch");
   }
-  recurringReminders = [];
-  recurringTimes = []
+  localStorage.setItem("recurringReminders", []);
+  localStorage.setItem("recurringTimes",[]);
   console.log("General reminders stopped.");
   //document.getElementById("new reminder set").innerHTML = text;
 }

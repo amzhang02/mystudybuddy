@@ -2,13 +2,14 @@ chrome.runtime.onInstalled.addListener(async() => {
     let url = chrome.runtime.getURL('buddy_choice.html');
     let tab = await chrome.tabs.create({url});
     console.log(`Created tab ${tab.id}`);
-    
 });
+    
+var blockingList = [];
+var reminderNames = [];
+var reminderTimes = [];
+var buddy = '';
+console.log("SCREAM SCERAM");
 
-let blockingList = [];
-let reminderNames = [];
-let reminderTimes = [];
-let buddy = '';
 //when url in a tab changes this is activated
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab){ 
     //console.log(tab.url);
@@ -82,3 +83,4 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
         }
     )
   });
+
