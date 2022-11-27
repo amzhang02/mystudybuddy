@@ -38,10 +38,12 @@ button{
     position: absolute;
     top: 5px;
     left: 5px;
+    cursor: pointer;
 }
 #refresh{
     position:absolute;
     top:5px;
     right:5px;
+    cursor: pointer;
 }
 
