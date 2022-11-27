@@ -69,6 +69,8 @@ function generalReminderForm(){
     console.log("received times: ", recurringTimes)
   });
   console.log("[0]: ", recurringReminders[0]);
+  console.log(recurringReminders);
+  console.log(recurringReminders.includes("water"));
   if(recurringReminders.includes("water")){
     let waterTime = reminderTimes[0];
     console.log("water alarm creation!");
