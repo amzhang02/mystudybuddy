@@ -38,10 +38,21 @@ button{
     position: absolute;
     top: 5px;
     left: 5px;
+    cursor: pointer;
 }
 #refresh{
     position:absolute;
     top:5px;
     right:5px;
+    cursor: pointer;
+}
+#reminderbtn{
+    cursor: pointer;
+}
+#clearUserReminers{
+    cursor: pointer;
+}
+#clearGenReminders{
+    cursor: pointer;
 }
 
