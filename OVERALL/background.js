@@ -12,7 +12,7 @@ let buddy = '';
 //when url in a tab changes this is activated
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab){ 
     //console.log(tab.url);
-    checkURL = tab.url.toLowerCase()
+    checkURL = tab.url.toLowerCase();
     for(let i = 0; i < blockingList.length; i++){
         if(checkURL.includes(blockingList[i])){
         //let oops = chrome.runtime.getURL('./Images/', buddy, '_copy.jpg')
@@ -31,7 +31,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
     }
     //getting buddy: popup.js
     if(request.message === "getBuddy"){
-        console.log("get bestie");
+        console.log("get bestie: ", buddy);
         sendResponse(buddy);
     }
     //grabbing the websites: blocked_choice.js
