@@ -3,6 +3,7 @@ let reminderChoice = ''
 let waterClicked = false;
 let snackClicked = false;
 let stretchClicked = false;
+let chosen = [];
 
 //variable for testing
 //let user_choice = document.querySelector('#user_choice')
@@ -13,8 +14,22 @@ document.querySelector('#prevButton').onclick = function() {
 
 document.querySelector('#nextButton').onclick = function() {
   if(waterClicked || snackClicked || stretchClicked){
-    location.replace("time_choice.html" + location.search + "&water=" + waterClicked + "&snack=" + snackClicked + "&stretch=" + stretchClicked)
-  } else {
+    location.replace("time_choice.html" + location.search + "&water=" + waterClicked + "&snack=" + snackClicked + "&stretch=" + stretchClicked);
+    if(waterClicked){
+      chosen.push("water");
+    }
+    if(snackClicked){
+      chosen.push("snack");
+    }
+    if(stretchClicked){
+      chosen.push("stretch");
+    }
+    chrome.runtime.sendMessage(
+      {message: "setGeneralReminders", genRemind: chosen}, function(response){
+        console.log("Received: ", response);
+      });
+  } 
+  else {
     alert("Must select at least one option!");
   }
 }

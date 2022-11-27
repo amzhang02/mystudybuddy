@@ -6,6 +6,8 @@ chrome.runtime.onInstalled.addListener(async() => {
 });
 
 let blockingList = [];
+let reminderNames = [];
+let reminderTimes = [];
 let buddy = '';
 //when url in a tab changes this is activated
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab){ 
@@ -19,43 +21,54 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab){
     }
 });
 //background listening for messages
-//messages include: buddy request, buddy send
+//messages include: buddy request, buddy send, website blocking, set alarms, get alarms
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
-    //console.log("ugh");
+    //setting buddy: buddy_choice.js
     if(request.message === "setBuddy"){
-        console.log("setting");
         buddy = request.buddy
+        console.log("setting bestie: ", buddy);
         sendResponse("set: ", buddy);
     }
-
+    //getting buddy: popup.js
     if(request.message === "getBuddy"){
         console.log("get bestie");
         sendResponse(buddy);
     }
-    
+    //grabbing the websites: blocked_choice.js
     if(request.message === "blockList"){
         blockingList = request.blocked;
         console.log("blocking: ", blockingList);
         sendResponse("Blocked");
     }
+
+    //information about reminders needed: reminder_choice.js
+    if(request.message === "setGeneralReminders"){
+        reminderNames = request.genRemind;
+        console.log("setting reminders for: ", reminderNames);
+        sendResponse("confirmation");
+    }
+
+    //information about reminders needed: time_choice.js
+    if(request.message === "setTimes"){
+        reminderTimes = request.times;
+        console.log("setting times (respectively): ", reminderTimes);
+        sendResponse("confirmation");
+        //order of reminders is always water, snack, stretch and times are in sync with chosen reminders
+    }
+
+    //info going towards popup.js
+    if(request.message === "getGeneralReminders"){
+        console.log("sending reminder names: ", reminderNames);
+        sendResponse(reminderNames);
+    }
+    
+    //info going towards popup.js
+    if(request.message === "getGenTimes"){
+        console.log("sending reminder times: ", reminderTimes);
+        sendResponse(reminderTimes);
+    }
+
 })
-
-//alarms! woo!
-chrome.alarms.onAlarm.addListener((alarm) =>{
-    console.log(alarm.name); //ok so this DOES hear the alarms when the popup part closes
-    if(alarm.name === "water"){
-        //chrome.tabs.create({url: "./Images.water_copy.jpg"})
-    }
-    if(alarm.name === "stretch"){
-        //chrome.tabs.create({url: "./Images.stretch_copy.jpg"})
-
-    }
-    if(alarm.name === "snack"){
-        //chrome.tabs.create({url: "./Images.snack_copy.jpg"})
-    }
-    //chrome.tabs.create({url: "./Images.water_copy.jpg"})
-
-});
 
 chrome.alarms.onAlarm.addListener(function(alarm) {
     console.log(alarm);

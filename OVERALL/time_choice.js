@@ -18,6 +18,7 @@ let stretch120Clicked = false;
 let waterTime = "none";
 let snackTime = "none";
 let stretchTime = "none";
+let allTimes = [];
 
 if(water == "false") {
   document.getElementById("waterSection").style.display = "none";
@@ -42,6 +43,12 @@ document.querySelector('#nextButton').onclick = function() {
   } else {
     location.replace("blocked_choice.html" + location.search + 
     "&waterTime=" + waterTime + "&snackTime=" + snackTime + "&stretchTime=" + stretchTime)
+    allTimes.push(waterTime);
+    allTimes.push(snackTime);
+    allTimes.push(stretchTime);
+    chrome.runtime.sendMessage({message: "setTimes", times: allTimes}, function(response){
+      console.log("Received: ", response);
+    });
   }
 }
 
