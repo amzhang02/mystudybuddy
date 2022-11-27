@@ -80,7 +80,8 @@ function openReminderForm() {
 //THE IF STATEMENTS ARE NOT WORKING BUT THE INFORMATION IS ALL PASSED AND IT IS THERE
 async function generalReminderForm(){
   console.log("we're done waiting <3");
-  if(localStorage.getItem("recurringReminders").includes("water")){
+  console.log(localStorage.getItem("recurringReminders"));
+  if(window.localStorage.getItem("recurringReminders").includes("water")){
     let waterTime = recurringTimes[0];
     console.log("water alarm creation! ", waterTime);
     chrome.alarms.create("water", {periodInMinutes : parseInt(waterTime)} );
