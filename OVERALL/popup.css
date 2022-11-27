@@ -46,4 +46,13 @@ button{
     right:5px;
     cursor: pointer;
 }
+#reminderbtn{
+    cursor: pointer;
+}
+#clearUserReminers{
+    cursor: pointer;
+}
+#clearGenReminders{
+    cursor: pointer;
+}
 
