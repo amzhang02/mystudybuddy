@@ -86,12 +86,17 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
 
 chrome.alarms.onAlarm.addListener(function(alarm) {
     console.log(alarm);
-    alert(alarm.name);
+    console.log(alarm.name);
+    //alert(alarm.name);
+    //HAHA FIX THIS BECAUSE IT SHOULD REMIND THE USER OF THEIR SPECIFIC REMINDER NAME INSTEAD OF WATER
+    chrome.tabs.create({url: 'snack_alert_tab.html'});
+    
     /*since the notifications API does not work for 2/3
         of the group, we have created an alert as well
         as the notification
     */
     if(alarm.name == "water"){
+        /*
         chrome.notifications.create(
             {
                 title: 'MyStudyBuddy',
@@ -100,8 +105,11 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
                 iconUrl: "./Images/water_copy.jpg"
             }
         )
+        */
+       chrome.tabs.create({url: 'water_alert_tab.html'});
     }
     else if(alarm.name == "snack"){
+        /*
         chrome.notifications.create(
             {
                 title: 'MyStudyBuddy',
@@ -110,8 +118,11 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
                 iconUrl: "./Images/snack_copy.jpg"
             }
         )
+        */
+       chrome.tabs.create({url: 'snack_alert_tab.html'});
     }
     else if(alarm.name == "stretch"){
+        /*
         chrome.notifications.create(
             {
                 title: 'MyStudyBuddy',
@@ -120,6 +131,8 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
                 iconUrl: "./Images/stretch_copy.jpg"
             }
         )
+        */
+       chrome.tabs.create({url: 'stretch_alert_tab.html'});
     }
     else{
         chrome.notifications.create(
