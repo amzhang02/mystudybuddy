@@ -13,17 +13,22 @@ var buddy = '';
 //when url in a tab changes this is activated
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab){ 
     //console.log(tab.url);
+    
     chrome.storage.sync.get("block", function (obj){
         //console.log("storage in background:  ", obj);
-        var holder = Object.values(obj);
-        blockingList = holder[0];
+        if(obj != null && obj != undefined){
+            var holder = Object.values(obj);
+            blockingList = holder[0];
+        }
         //console.log("test test ", blockingList);
     });
     checkURL = tab.url.toLowerCase();
-    for(let i = 0; i < blockingList.length; i++){
-        if(checkURL.includes(blockingList[i])){
-        //let oops = chrome.runtime.getURL('./Images/', buddy, '_copy.jpg')
-        chrome.tabs.update(null,({url: "attempt.html"}));
+    if(blockingList != undefined && blockingList.length != 0){
+        for(let i = 0; i < blockingList.length; i++){
+            if(checkURL.includes(blockingList[i])){
+            //let oops = chrome.runtime.getURL('./Images/', buddy, '_copy.jpg')
+            chrome.tabs.update(null,({url: "attempt.html"}));
+            }
         }
     }
 });
