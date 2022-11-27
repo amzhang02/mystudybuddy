@@ -10,6 +10,8 @@ chrome.runtime.onInstalled.addListener(async () => {
 
 });
 
+
+
 //ALL BUTTONS ON POP-UP CLICK EVENTS
 document.getElementById("reminderbtn").addEventListener("click", openReminderForm);
 document.getElementById("clearUserReminders").addEventListener("click", clearReminders);
@@ -27,7 +29,8 @@ console.log("recur: ", recurringReminders);
 var recurringTimes = localStorage.getItem("recurringTimes");
 var alarmCreated = false;
 
-refreshBuddy();
+refresh();
+buddySwap();
 async function refresh(){
   refreshBuddy(); //force refresh buddy
   await refreshReminders();
@@ -57,11 +60,12 @@ async function refreshReminders(){
       console.log("received times: ", localStorage.getItem("recurringTimes"));
     });
   }
+  console.log("reminders: ", localStorage.getItem("recurringReminders"));
 }
 
 function setting(){
-  localStorage.setItem("recurringReminders", null);
-  localStorage.setItem("recurringTimes", null);
+  localStorage.setItem("recurringReminders", []);
+  localStorage.setItem("recurringTimes", []);
   localStorage.setItem("buddy", "");
   chrome.tabs.create({url:"buddy_choice.html"});
 }

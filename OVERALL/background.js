@@ -1,4 +1,5 @@
 chrome.runtime.onInstalled.addListener(async() => {
+    chrome.storage.sync.clear();
     let url = chrome.runtime.getURL('buddy_choice.html');
     let tab = await chrome.tabs.create({url});
     console.log(`Created tab ${tab.id}`);
@@ -8,11 +9,16 @@ var blockingList = [];
 var reminderNames = [];
 var reminderTimes = [];
 var buddy = '';
-console.log("SCREAM SCERAM");
 
 //when url in a tab changes this is activated
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab){ 
     //console.log(tab.url);
+    chrome.storage.sync.get("block", function (obj){
+        //console.log("storage in background:  ", obj);
+        var holder = Object.values(obj);
+        blockingList = holder[0];
+        //console.log("test test ", blockingList);
+    });
     checkURL = tab.url.toLowerCase();
     for(let i = 0; i < blockingList.length; i++){
         if(checkURL.includes(blockingList[i])){
@@ -38,7 +44,9 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
     //grabbing the websites: blocked_choice.js
     if(request.message === "blockList"){
         blockingList = request.blocked;
-        console.log("blocking: ", blockingList);
+        chrome.storage.sync.set({"block": blockingList}, function(){
+            console.log("saved in storage: ", blockingList);
+        })
         sendResponse("Blocked");
     }
 
