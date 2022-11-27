@@ -52,6 +52,7 @@ async function refreshReminders(){
   if(recurringReminders == "" || recurringReminders == [] || recurringReminders == null){
     chrome.runtime.sendMessage({message: "getGeneralReminders"}, function(response){
       localStorage.setItem('recurringReminders', response);
+      recurringReminders = localStorage.getItem("recurringReminders");
       console.log("received names: ",recurringReminders);
     });
     chrome.runtime.sendMessage({message:"getGenTimes"}, function(response){
