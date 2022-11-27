@@ -86,14 +86,50 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
 
 chrome.alarms.onAlarm.addListener(function(alarm) {
     console.log(alarm);
-    chrome.notifications.create(
-        {
-            title: 'MyStudyBuddy',
-            message: alarm.name,
-            type: 'basic',
-            iconUrl: 'https://cdn-icons-png.flaticon.com/512/92/92386.png'
-
-        }
-    )
+    alert(alarm.name);
+    /*since the notifications API does not work for 2/3
+        of the group, we have created an alert as well
+        as the notification
+    */
+    if(alarm.name == "water"){
+        chrome.notifications.create(
+            {
+                title: 'MyStudyBuddy',
+                message: alarm.name,
+                type: 'basic',
+                iconUrl: "./Images/water_copy.jpg"
+            }
+        )
+    }
+    else if(alarm.name == "snack"){
+        chrome.notifications.create(
+            {
+                title: 'MyStudyBuddy',
+                message: alarm.name,
+                type: 'basic',
+                iconUrl: "./Images/snack_copy.jpg"
+            }
+        )
+    }
+    else if(alarm.name == "stretch"){
+        chrome.notifications.create(
+            {
+                title: 'MyStudyBuddy',
+                message: alarm.name,
+                type: 'basic',
+                iconUrl: "./Images/stretch_copy.jpg"
+            }
+        )
+    }
+    else{
+        chrome.notifications.create(
+            {
+                title: 'MyStudyBuddy',
+                message: alarm.name,
+                type: 'basic',
+                iconUrl: "./Images/logo_copy.jpg"
+            }
+        )
+    }
   });
 
