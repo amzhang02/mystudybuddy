@@ -10,8 +10,6 @@ chrome.runtime.onInstalled.addListener(async () => {
 
 });
 
-
-
 //ALL BUTTONS ON POP-UP CLICK EVENTS
 document.getElementById("reminderbtn").addEventListener("click", openReminderForm);
 document.getElementById("clearUserReminders").addEventListener("click", clearReminders);
@@ -29,8 +27,8 @@ console.log("recur: ", recurringReminders);
 var recurringTimes = localStorage.getItem("recurringTimes");
 var alarmCreated = false;
 
-refresh();
-buddySwap();
+refreshBuddy();
+
 async function refresh(){
   refreshBuddy(); //force refresh buddy
   await refreshReminders();
@@ -44,20 +42,22 @@ function refreshBuddy(){
      localStorage.setItem('buddy', response);
    });
   }
+  buddy = localStorage.getItem("buddy");
   buddySwap();
-  console.log("REFRESHED BUDDY");
+  console.log("REFRESHED BUDDY: ", buddy);
 }
 
 async function refreshReminders(){
-  if(localStorage.getItem("recurringReminders") == "" || localStorage.getItem("recurringReminders") == [] || localStorage.getItem("recurringReminders") == null){
+  recurringReminders = localStorage.getItem("recurringReminders");
+  if(recurringReminders == "" || recurringReminders == [] || recurringReminders == null){
     chrome.runtime.sendMessage({message: "getGeneralReminders"}, function(response){
       localStorage.setItem('recurringReminders', response);
-      console.log("received names: ", localStorage.getItem('recurringReminders'));
+      console.log("received names: ",recurringReminders);
     });
     chrome.runtime.sendMessage({message:"getGenTimes"}, function(response){
       localStorage.setItem('recurringTimes', response);
       recurringTimes = localStorage.getItem("recurringTimes");
-      console.log("received times: ", localStorage.getItem("recurringTimes"));
+      console.log("received times: ", recurringTimes);
     });
   }
   console.log("reminders: ", localStorage.getItem("recurringReminders"));
@@ -87,26 +87,28 @@ function openReminderForm() {
 
 //THE IF STATEMENTS ARE NOT WORKING BUT THE INFORMATION IS ALL PASSED AND IT IS THERE
 async function generalReminderForm(){
-  console.log("we're done waiting <3");
-  if(localStorage.getItem("recurringReminders") == null){
+  recurringTimes = localStorage.getItem("recurringTimes");
+  recurringTimes = recurringTimes.split(","); //for some reason it became 1 string, this parses
+  recurringReminders = localStorage.getItem("recurringReminders");
+  if(recurringReminders == null){
     console.log("null list: no recurring reminders");
   }
   else{
-    if(localStorage.getItem("recurringReminders").includes("water")){
+    if(recurringReminders.includes("water")){
       let waterTime = recurringTimes[0];
       console.log("water alarm creation! ", waterTime);
-      //chrome.alarms.create("water", {periodInMinutes : parseInt(waterTime)} );
+      chrome.alarms.create("water", {periodInMinutes : parseInt(waterTime)} );
     }
-    if(localStorage.getItem("recurringReminders").includes("snack")){
+    if(recurringReminders.includes("snack")){
       let snackTime = recurringTimes[1];
-      console.log("snack alarm creation!");
-      //chrome.alarms.create("snack", {periodInMinutes : parseInt(snackTime)} );
+      console.log("snack alarm creation!", snackTime);
+      chrome.alarms.create("snack", {periodInMinutes : parseInt(snackTime)} );
   
     }
-    if(localStorage.getItem("recurringReminders").includes("stretch")){
+    if(recurringReminders.includes("stretch")){
       let stretchTime = recurringTimes[2];
-      console.log("stretch alarm creation!");
-      //chrome.alarms.create("stretch", {periodInMinutes : parseInt(stretchTime)} );
+      console.log("stretch alarm creation!", stretchTime);
+      chrome.alarms.create("stretch", {periodInMinutes : parseInt(stretchTime)} );
   
     }
   }
