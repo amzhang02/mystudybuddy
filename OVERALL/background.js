@@ -9,6 +9,7 @@ var blockingList = [];
 var reminderNames = [];
 var reminderTimes = [];
 var buddy = '';
+var helper;
 
 //when url in a tab changes this is activated
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab){ 
@@ -82,15 +83,24 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
         sendResponse(reminderTimes);
     }
 
-})
+    if(request.message === "getAlarm"){
+        console.log("sending Alarm info");
+        let temp;
+        chrome.storage.sync.get("alarmAsArray", async function(alarmObj){
+            temp = Object.values(alarmObj);
+            console.log("this is temp: ", temp[0]);
+            sendResponse(temp[0]);
+        });
+        sendResponse(helper);
+    }
+
+});
 
 chrome.alarms.onAlarm.addListener(function(alarm) {
     console.log(alarm);
-    console.log(alarm.name);
-    //alert(alarm.name);
-    //HAHA FIX THIS BECAUSE IT SHOULD REMIND THE USER OF THEIR SPECIFIC REMINDER NAME INSTEAD OF WATER
-    chrome.tabs.create({url: 'snack_alert_tab.html'});
+    //console.log(alarm.name);
     
+    //alert(alarm.name);    
     /*since the notifications API does not work for 2/3
         of the group, we have created an alert as well
         as the notification
@@ -135,14 +145,18 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
        chrome.tabs.create({url: 'stretch_alert_tab.html'});
     }
     else{
-        chrome.notifications.create(
+        /*chrome.notifications.create(
             {
                 title: 'MyStudyBuddy',
                 message: alarm.name,
                 type: 'basic',
                 iconUrl: "./Images/logo_copy.jpg"
             }
-        )
+        )*/
+        console.log("This custom alarm going off: ", alarm.name);
+        chrome.storage.sync.set({"alarmAsArray": alarm.name});
+        helper = alarm.name;
+        chrome.tabs.create({url: 'custom_alert_tab.html'});
     }
   });
 

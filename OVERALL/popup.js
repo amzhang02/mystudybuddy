@@ -89,12 +89,12 @@ function openReminderForm() {
 //THE IF STATEMENTS ARE NOT WORKING BUT THE INFORMATION IS ALL PASSED AND IT IS THERE
 async function generalReminderForm(){
   recurringTimes = localStorage.getItem("recurringTimes");
-  recurringTimes = recurringTimes.split(","); //for some reason it became 1 string, this parses
   recurringReminders = localStorage.getItem("recurringReminders");
   if(recurringReminders == null){
     console.log("null list: no recurring reminders");
   }
   else{
+    recurringTimes = recurringTimes.split(","); //for some reason it became 1 string, this parses
     if(recurringReminders.includes("water")){
       let waterTime = recurringTimes[0];
       console.log("water alarm creation! ", waterTime);
