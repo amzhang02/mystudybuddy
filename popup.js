@@ -68,6 +68,11 @@ function setting(){
   localStorage.setItem("recurringReminders", []);
   localStorage.setItem("recurringTimes", []);
   localStorage.setItem("buddy", "");
+  chrome.runtime.sendMessage(
+    {message: "blockList", blocked: []}, function(response){
+      console.log(response);
+    }
+  );
   chrome.tabs.create({url:"buddy_choice.html"});
 }
 
